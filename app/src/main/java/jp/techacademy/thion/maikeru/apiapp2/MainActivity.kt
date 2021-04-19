@@ -2,6 +2,7 @@ package jp.techacademy.thion.maikeru.apiapp2
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
@@ -30,8 +31,13 @@ class MainActivity : AppCompatActivity(), FragmentCallback {
         }.attach()
     }
 
-    override fun onClickItem(url: String) {
-        WebViewActivity.start(this, url)
+
+    override fun onClickItem1(shop: Shop) {
+        WebViewActivity.start(this, shop)
+    }
+
+    override fun onClickItem2(favoriteShop: FavoriteShop) {
+        TODO("Not yet implemented")
     }
 
     override fun onAddFavorite(shop: Shop) { // Favoriteに追加するときのメソッド(Fragment -> Activity へ通知する)
@@ -64,6 +70,26 @@ class MainActivity : AppCompatActivity(), FragmentCallback {
         FavoriteShop.delete(id)
         (viewPagerAdapter.fragments[VIEW_PAGER_POSITION_API] as ApiFragment).updateView()
         (viewPagerAdapter.fragments[VIEW_PAGER_POSITION_FAVORITE] as FavoriteFragment).updateData()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("Onresume","Onresume")
+        viewPager2.apply {
+            adapter = viewPagerAdapter
+            orientation = ViewPager2.ORIENTATION_HORIZONTAL // スワイプの向き横（ORIENTATION_VERTICAL を指定すれば縦スワイプで実装可能です）
+            offscreenPageLimit = viewPagerAdapter.itemCount // ViewPager2で保持する画面数
+        }
+
+        // TabLayoutの初期化
+        // TabLayoutとViewPager2を紐づける
+        // TabLayoutのTextを指定する
+        TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
+            tab.setText(viewPagerAdapter.titleIds[position])
+        }.attach()
+
+
+
     }
 
     companion object {

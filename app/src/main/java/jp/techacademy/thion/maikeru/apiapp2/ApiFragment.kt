@@ -51,8 +51,8 @@ class ApiFragment: Fragment() {
                 fragmentCallback?.onDeleteFavorite(it.id)
             }
             // Itemをクリックしたとき
-            onClickItem = {
-                fragmentCallback?.onClickItem(it)
+            onClickItem1 = {
+                fragmentCallback?.onClickItem1(it)
             }
         }
         // RecyclerViewの初期化
