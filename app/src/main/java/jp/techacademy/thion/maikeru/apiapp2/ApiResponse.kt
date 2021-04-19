@@ -15,6 +15,8 @@ data class Results(
 )
 
 data class Shop(
+    @SerializedName("address")
+    var address:String,
     @SerializedName("coupon_urls")
     val couponUrls: CouponUrls,
     @SerializedName("id")
@@ -23,7 +25,7 @@ data class Shop(
     val logoImage: String,
     @SerializedName("name")
     val name: String
-)
+):Serializable
 
 
 data class CouponUrls(

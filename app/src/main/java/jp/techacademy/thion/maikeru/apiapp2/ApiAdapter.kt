@@ -10,6 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import org.w3c.dom.Text
 
 class ApiAdapter(private val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
@@ -58,6 +59,8 @@ class ApiAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVie
         val imageView: ImageView = view.findViewById(R.id.imageView)
         // レイアウトファイルからidがfavoriteImageViewのImageViewオブジェクトを取得し、代入
         val favoriteImageView: ImageView = view.findViewById(R.id.favoriteImageView)
+
+        val addressTextView:TextView=view.findViewById(R.id.addressTextView)
     }
 
     override fun getItemCount(): Int {
@@ -90,6 +93,7 @@ class ApiAdapter(private val context: Context): RecyclerView.Adapter<RecyclerVie
             }
             // nameTextViewのtextプロパティに代入されたオブジェクトのnameプロパティを代入
             nameTextView.text = data.name
+            addressTextView.text=data.address
             // Picassoライブラリを使い、imageViewにdata.logoImageのurlの画像を読み込ませる
             Picasso.get().load(data.logoImage).into(imageView)
             // 白抜きの星マークの画像を指定
