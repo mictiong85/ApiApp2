@@ -10,5 +10,5 @@ interface FragmentCallback {
     fun onDeleteFavorite(id: String)
 
     fun onClickItem1(shop:Shop)
-    fun onClickItem2(favoriteShop: FavoriteShop)
+    fun onClickItem2(url: String)
 }

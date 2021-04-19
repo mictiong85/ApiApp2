@@ -36,9 +36,10 @@ class MainActivity : AppCompatActivity(), FragmentCallback {
         WebViewActivity.start(this, shop)
     }
 
-    override fun onClickItem2(favoriteShop: FavoriteShop) {
-        TODO("Not yet implemented")
+    override fun onClickItem2(url:String) {
+        WebViewActivity2.start(this, url)
     }
+
 
     override fun onAddFavorite(shop: Shop) { // Favoriteに追加するときのメソッド(Fragment -> Activity へ通知する)
         FavoriteShop.insert(FavoriteShop().apply {
